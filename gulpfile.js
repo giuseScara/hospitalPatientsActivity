@@ -22,7 +22,7 @@ gulp.task('bower', function () {
 });
 
 gulp.task('jshint', function () {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src(['app/scripts/**/*.js', 'app/view/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
 });
@@ -34,7 +34,7 @@ gulp.task('clean', function () {
 
 // Default task
 gulp.task('default', ['clean', 'bower'], function () {
-  gulp.start('usemin', 'imagemin', 'copyfonts');
+  gulp.start('usemin', 'imagemin', 'copyfonts', 'copyview');
 });
 
 
@@ -61,19 +61,26 @@ gulp.task('imagemin', function () {
     }));
 });
 
+gulp.task('copyview', function () {
+  gulp.src('app/view/**/*.html')
+    .pipe(gulp.dest('./dist/view'));
+});
+
 gulp.task('copyfonts', ['clean'], function () {
-  gulp.src('./bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}*')
+  gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}*')
     .pipe(gulp.dest('./dist/fonts'));
-  gulp.src('./bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
+  gulp.src('bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
     .pipe(gulp.dest('./dist/fonts'));
 });
 
 // Watch
 gulp.task('watch', ['browser-sync'], function () {
   // Watch .js files
-  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html}', ['usemin']);
+  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html, app/view/**/*.js}', ['usemin']);
   // Watch image files
   gulp.watch('app/images/**/*', ['imagemin']);
+
+  gulp.watch('app/view/**/*.html', ['copyview']);
 
 });
 
@@ -83,13 +90,14 @@ gulp.task('browser-sync', ['default'], function () {
       'app/styles/**/*.css',
       'app/images/**/*.png',
       'app/scripts/**/*.js',
+      'app/view/**/*.*',
       'dist/**/*'
    ];
 
   browserSync.init(files, {
     server: {
       baseDir: "dist",
-      index: "menu.html"
+      index: "index.html"
     }
   });
   // Watch any files in dist/, reload on change
