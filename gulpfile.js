@@ -76,7 +76,10 @@ gulp.task('copyfonts', ['clean'], function () {
 // Watch
 gulp.task('watch', ['browser-sync'], function () {
   // Watch .js files
-  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html, app/view/**/*.js}', ['usemin']);
+  gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html}', ['usemin']);
+
+  gulp.watch('app/view/**/*.*.js', ['usemin']);
+
   // Watch image files
   gulp.watch('app/images/**/*', ['imagemin']);
 
@@ -90,7 +93,8 @@ gulp.task('browser-sync', ['default'], function () {
       'app/styles/**/*.css',
       'app/images/**/*.png',
       'app/scripts/**/*.js',
-      'app/view/**/*.*',
+      'app/view/**/*.js',
+      'app/view/**/*.html',
       'dist/**/*'
    ];
 

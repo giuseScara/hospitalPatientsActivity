@@ -11,7 +11,7 @@ function ConfigInterceptor(httpProvider) {
       // optional method
       'request': function (config) {
         //angular.element(".overlay").show();
-        console.log(config);
+        //console.log(config);
         return config;
       },
 
@@ -28,7 +28,7 @@ function ConfigInterceptor(httpProvider) {
       'response': function (response) {
         // do something on success
         //angular.element(".overlay").hide();
-        console.log(response);
+        //console.log(response);
         return response;
       },
 

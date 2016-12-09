@@ -11,6 +11,23 @@ footer {
 }
 
 .img-patients {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+}
+
+.box-patient {
+  margin-bottom: 45px;
+  cursor: pointer;
+}
+
+.space-col {
+  margin-bottom: 40px;
+}
+
+.form-filter > div {
+  margin-left: 5px;
+}
+
+a {
+  cursor: pointer;
 }
