@@ -1,14 +1,27 @@
 <div class="row">
-  <div class="col-lg-4 col-sm-6 text-center box-patient">
-    <img class="img-circle img-responsive img-center img-patients" ng-src="{{::patCtrl.getPatientImage(item, $index)}}" alt="patient image">
-    <h3>{{ item.name }}
-          <small>{{ item.birthDate | date }} </small>
+  <div class="col-lg-4 col-sm-4 text-center box-patient">
+    <img class="img-circle img-responsive img-center img-patients" ng-src="{{::patSumCtrl.getPatientImage(patSumCtrl.patient)}}" alt="patient image">
+    <h3>{{ patSumCtrl.patient.name }}
+          <small>{{ patSumCtrl.patient.birthDate | date }} </small>
         </h3>
     <p>
-      Height: {{ item.heightCm }} cm - Weight: {{ item.weightKg }} kg - B.M.I.: {{ item.bmi }}
+      Height: {{ patSumCtrl.patient.heightCm }} cm - Weight: {{ patSumCtrl.patient.weightKg }} kg - B.M.I.: {{ patSumCtrl.patient.bmi }}
     </p>
   </div>
-  <div class="col-lg-8 col-sm-6">
-    <div id="chart"></div>
+  <div class="col-lg-8 col-sm-8">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2 class="text-center"><i class="fa fa-heartbeat" aria-hidden="true"></i> Patients Activity</h2>
+        <div id="chartDonut" style="margin-top:20%"></div>
+      </div>
+      <div class="col-sm-6">
+        <div id="chartLine"></div>
+      </div>
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-6">
+        <div id="chartBar"></div>
+      </div>
+    </div>
   </div>
 </div>

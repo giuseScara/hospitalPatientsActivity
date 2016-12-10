@@ -12,7 +12,7 @@ function ConfigRoutes(routeProvider, httpProvider) {
       controller: "PatientsController",
       controllerAs: 'patCtrl'
     })
-    .when("/patientsSummary/:id", {
+    .when("/patientsSummary/:patient", {
       templateUrl: "./view/patients.summary/patients.summary.html",
       controller: "PatientsSummaryController",
       controllerAs: 'patSumCtrl'

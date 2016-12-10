@@ -53,7 +53,10 @@
 </div>
 <div class="row">
   <div class="col-lg-4 col-sm-6 text-center box-patient" ng-repeat="item in patCtrl.patients | orderBy:patCtrl.order.predicate: patCtrl.order.reverse">
-    <img class="img-circle img-responsive img-center img-patients" ng-src="{{::patCtrl.getPatientImage(item, $index)}}" alt="patient image">
+    <a href="#/patientsSummary/{{item}}">
+      <img class="img-circle img-responsive img-center img-patients" ng-src="{{::patCtrl.getPatientImage(item, $index)}}" alt="patient image">
+    </a>
+
     <h3>{{ item.name }}
           <small>{{ item.birthDate | date }} </small>
         </h3>
