@@ -1,5 +1,7 @@
 # Hospital Patients Activity
 
+<a href="https://hospital-patients-activity.firebaseapp.com/#/patients">Demo</a>
+
 A hospital is running a trial to see if their patients age 20-40 are falling below the recommended level of activity:
 <ul>
 <li>150 minutes of moderate intensity activity, or</li>
