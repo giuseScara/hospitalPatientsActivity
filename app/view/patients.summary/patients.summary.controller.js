@@ -9,11 +9,12 @@ function PatientsSummaryController(routeParams, service) {
   vm.definitionActivity = null;
   vm.patient = JSON.parse(routeParams.patient);
   vm.getPatientImage = getPatientImage;
-  service.getDataPatient(vm.patient.id).then(function (response) {
-    createChartActivity(response.data, 'donut', "#chartDonut", 'right');
-    createChartActivity(response.data, 'bar', "#chartBar", 'right');
-    createChartActivity(response.data, 'line', "#chartLine", 'bottom');
+  vm.showActivityDefintion = false;
+  vm.actionOnActivityDefinition = actionOnActivityDefinition;
 
+  service.getDataPatient(vm.patient.id).then(function (response) {
+    vm.patientActivity = response.data;
+    createChartActivity(response.data, 'donut', "#chartDonut", 'right');
   });
 
   service.getActivities().then(function (response) {
@@ -47,5 +48,9 @@ function PatientsSummaryController(routeParams, service) {
       }
     });
   }; //createChartActivity
+
+  function actionOnActivityDefinition() {
+    vm.showActivityDefintion = !vm.showActivityDefintion;
+  }; //actionOnActivityDefinition
 
 }; // PatientsSummaryController
