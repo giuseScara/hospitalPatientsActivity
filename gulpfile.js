@@ -34,7 +34,7 @@ gulp.task('clean', function () {
 
 // Default task
 gulp.task('default', ['clean', 'bower'], function () {
-  gulp.start('usemin', 'imagemin', 'copyfonts', 'copyview');
+  gulp.start('usemin', 'imagemin', 'copyfonts', 'copyview', 'copymockapi');
 });
 
 
@@ -64,6 +64,11 @@ gulp.task('imagemin', function () {
 gulp.task('copyview', function () {
   gulp.src('app/view/**/*.html')
     .pipe(gulp.dest('./dist/view'));
+});
+
+gulp.task('copymockapi', function () {
+  gulp.src('./mock-api-data/**/*')
+    .pipe(gulp.dest('./dist/mock-api-data'));
 });
 
 gulp.task('copyfonts', ['clean'], function () {

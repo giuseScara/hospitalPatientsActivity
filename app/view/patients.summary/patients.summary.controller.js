@@ -6,18 +6,18 @@ PatientsSummaryController.$inject = ["$routeParams", "PatientsSummaryService"];
 function PatientsSummaryController(routeParams, service) {
   var vm = this;
   var chart = null;
+  vm.definitionActivity = null;
   vm.patient = JSON.parse(routeParams.patient);
   vm.getPatientImage = getPatientImage;
   service.getDataPatient(vm.patient.id).then(function (response) {
-    createChartActivity(response.data, 'pie', "#chartPie");
-    createChartActivity(response.data, 'bar', "#chartBar");
-    createChartActivity(response.data, 'donut', "#chartDonut");
-    createChartActivity(response.data, 'line', "#chartLine");
+    createChartActivity(response.data, 'donut', "#chartDonut", 'right');
+    createChartActivity(response.data, 'bar', "#chartBar", 'right');
+    createChartActivity(response.data, 'line', "#chartLine", 'bottom');
 
   });
 
   service.getActivities().then(function (response) {
-    console.log(response.data);
+    vm.definitionActivity = response.data;
   });
 
   function getPatientImage(patient, index) {
@@ -30,7 +30,7 @@ function PatientsSummaryController(routeParams, service) {
     return image + ".png";
   }; //getPatientImage
 
-  function createChartActivity(jsonData, type, id) {
+  function createChartActivity(jsonData, type, id, position) {
     var json = {};
     jsonData.forEach(function (item) {
       json[item.activity] = [item.minutes];
@@ -41,6 +41,9 @@ function PatientsSummaryController(routeParams, service) {
       data: {
         json: json,
         type: type
+      },
+      legend: {
+        position: position
       }
     });
   }; //createChartActivity

@@ -21,8 +21,6 @@
 </head>
 
 <body ng-app="AppModule">
-
-  <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,20 +32,14 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <i class="fa fa-heartbeat" aria-hidden="true"></i>
+          <i class="fa fa-h-square fa-lg" aria-hidden="true"></i>
         </a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li>
-            <a href="#/patients">Patients</a>
-          </li>
-          <li>
-            <a href="#/activities">Activities</a>
-          </li>
-          <li>
-            <a href="#/description">Description</a>
+            <a href="#/patients"> <i class="fa fa-users" aria-hidden="true"></i> Our Patients</a>
           </li>
         </ul>
       </div>
@@ -56,11 +48,8 @@
     <!-- /.container -->
   </nav>
 
-  <!-- Page Content -->
   <div class="container">
-
     <ng-view />
-
   </div>
 
   <!-- build:js scripts/scripts.js -->

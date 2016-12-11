@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-lg-12">
-    <h2 class="page-header">Our Patients
-    </h2>
+    <ol class="breadcrumb pull-right">
+      <li class="active">Our Patients</li>
+    </ol>
+    <h3 class="page-header"><i class="fa fa-users" aria-hidden="true"></i> Our Patients</h3>
   </div>
 </div>
 <div class="row">
@@ -10,7 +12,7 @@
       <i class="fa fa-filter" aria-hidden="true"></i> {{ patCtrl.showFilter ? 'Close Filters':'Open Filters'}}
     </a>
     <div class="pull-right">
-      <a ng-click="patCtrl.reverseOrder()"> <i class="fa" ng-class="{'fa-sort-amount-asc': !patCtrl.order.reverse, 'fa-sort-amount-desc': patCtrl.order.reverse}" aria-hidden="true"></i> {{patCtrl.order.predicate}}
+      <a ng-click="patCtrl.reverseOrder()"> <i class="fa" ng-class="{'fa-sort-amount-asc': !patCtrl.order.reverse, 'fa-sort-amount-desc': patCtrl.order.reverse}" aria-hidden="true"></i> {{patCtrl.order.predicate | uppercase }}
       </a>
     </div>
   </div>
@@ -19,49 +21,57 @@
   <div class="col-xs-12 space-col" ng-if="patCtrl.showFilter">
     <form class="form-inline form-filter">
       <div class="form-group">
-        <label class="sr-only" for="name">Name</label>
-        <input type="text" class="form-control" ng-model="patCtrl.filters.name" id="departureAirport" placeholder="Enter name">
-      </div>
-      <div class="form-group">
         <label class="sr-only" for="height">Height</label>
-        <input type="text" class="form-control" ng-model="patCtrl.filters.height" id="height" placeholder="Enter height">
+        <input type="text" class="form-control" ng-model="patCtrl.filters.heightCm" id="height" placeholder="Enter height">
       </div>
       <div class="form-group">
         <label class="sr-only" for="height">Weight</label>
-        <input type="text" class="form-control" ng-model="patCtrl.filters.weight" id="weight" placeholder="Enter weight">
+        <input type="text" class="form-control" ng-model="patCtrl.filters.weightKg" id="weight" placeholder="Enter weight">
       </div>
       <div class="form-group">
         <label class="sr-only" for="height">B.M.I.</label>
         <input type="text" class="form-control" ng-model="patCtrl.filters.bmi" id="weight" placeholder="Enter B.M.I.">
       </div>
+      <label class="sr-only" for="gender">gender</label>
+      <select class="form-control" id="gender" ng-model="patCtrl.filters.gender">
+        <option value="">All gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
       <div class="form-group">
-        <label for="inputPassword" class="control-label"> Order by: &nbsp;</label>
+        <label for="order" class="control-label"> Order by: &nbsp;</label>
 
         <label class="radio-inline">
           <input type="radio" name="order" id="inlineRadio1" value="name" ng-model="patCtrl.filters.order"> Name
         </label>
         <label class="radio-inline">
-          <input type="radio" name="order" id="inlineRadio2" value="height" ng-model="patCtrl.filters.order"> Height
+          <input type="radio" name="order" id="inlineRadio2" value="heightCm" ng-model="patCtrl.filters.order"> Height
         </label>
         <label class="radio-inline">
-          <input type="radio" name="order" id="inlineRadio3" value="weight" ng-model="patCtrl.filters.order"> Weight
+          <input type="radio" name="order" id="inlineRadio3" value="weightKg" ng-model="patCtrl.filters.order"> Weight
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="order" id="inlineRadio3" value="bmi" ng-model="patCtrl.filters.bmi"> B.M.I.
         </label>
       </div>
-      <button type="submit" class="btn btn-primary pull-right" ng-click="rsCtrl.applyFilters()"><i class="fa fa-search"></i> Apply</button>
+      <button type="submit" class="btn btn-primary pull-right" ng-click="patCtrl.applyFilters()"><i class="fa fa-search"></i> Apply</button>
     </form>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4 col-sm-6 text-center box-patient" ng-repeat="item in patCtrl.patients | orderBy:patCtrl.order.predicate: patCtrl.order.reverse">
+  <div class="col-lg-4 col-sm-6 text-center box-patient" ng-repeat="item in patCtrl.patientsFilters | orderBy:patCtrl.order.predicate:patCtrl.order.reverse">
     <a href="#/patientsSummary/{{item}}">
       <img class="img-circle img-responsive img-center img-patients" ng-src="{{::patCtrl.getPatientImage(item, $index)}}" alt="patient image">
     </a>
-
     <h3>{{ item.name }}
-          <small>{{ item.birthDate | date }} </small>
-        </h3>
+      <small>{{ item.birthDate | date }} </small>
+    </h3>
     <p>
       Height: {{ item.heightCm }} cm - Weight: {{ item.weightKg }} kg - B.M.I.: {{ item.bmi }}
     </p>
   </div>
 </div>
+<blockquote ng-if="!patCtrl.patientsFilters || patCtrl.patientsFilters.length == 0">
+  <p>No patients found.</p>
+  <footer>Change filters </footer>
+</blockquote>
