@@ -35,17 +35,17 @@ module.exports = function (config) {
       'yes'
     ],
 
-  
-    ngHtml2JsPreprocessor: {
-        stripPrefix: 'app/',
-        //stripSufix: '.ext',
 
-        // setting this option will create only a single module that contains templates
-        // from all the files, so you can load them all with module('foo')
-        moduleName: 'myAppTemplates'
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/',
+      //stripSufix: '.ext',
+
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'myAppTemplates'
     },
 
-     // preprocess matching files before serving them to the browser
+    // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {},
 
@@ -53,7 +53,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-   reporters: ['spec', 'junit'],
+    reporters: ['spec', 'junit'],
 
     // web server port
     port: 9876,

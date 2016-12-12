@@ -8,6 +8,7 @@ function PatientsSummaryController(routeParams, service) {
   var chart = null;
   vm.definitionActivity = null;
   vm.patientActivity = null;
+  console.log(routeParams);
   vm.patient = JSON.parse(routeParams.patient);
   vm.getPatientImage = getPatientImage;
   vm.showActivityDefintion = false;
@@ -57,6 +58,6 @@ function PatientsSummaryController(routeParams, service) {
 
   function convertActivity(minutes) {
     return minutes < 60 ? minutes + " min" : (minutes / 60) + " h";
-  };//convertActivity
+  }; //convertActivity
 
 }; // PatientsSummaryController
