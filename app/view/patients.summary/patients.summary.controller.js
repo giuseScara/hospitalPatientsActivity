@@ -7,6 +7,7 @@ function PatientsSummaryController(routeParams, service) {
   var vm = this;
   var chart = null;
   vm.definitionActivity = null;
+  vm.patientActivity = null;
   vm.patient = JSON.parse(routeParams.patient);
   vm.getPatientImage = getPatientImage;
   vm.showActivityDefintion = false;

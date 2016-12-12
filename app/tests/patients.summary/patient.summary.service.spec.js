@@ -1,5 +1,5 @@
 
-describe('Unit: PatientsSummaryService', function () {
+describe('Unit: Service Test', function () {
 
   beforeEach(module("ngRoute"));
   beforeEach(module("AppModule"));
@@ -9,7 +9,7 @@ describe('Unit: PatientsSummaryService', function () {
     $httpBackend = _$httpBackend_; // angular strips the underscores so
   }));
 
-  describe('Service: getActivities', function () {
+  describe('PatientsSummaryService: getActivities', function () {
 
     it('should invoke GET service', function () {
       var mockData = {
@@ -56,7 +56,7 @@ describe('Unit: PatientsSummaryService', function () {
 
   });
 
-  describe('Service: getDataPatient', function () {
+  describe('PatientsSummaryService: getDataPatient', function () {
 
     it('should invoke GET service', function () {
       var mockData = {

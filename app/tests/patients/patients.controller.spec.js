@@ -1,4 +1,4 @@
-describe("Controller Test", function () {
+describe("Unit: Controller Test", function () {
   var controller, PatientsService;
 
   beforeEach(module("ngRoute"));
@@ -50,7 +50,6 @@ describe("Controller Test", function () {
       it('should resolve promise, patients should not be null', function () {
         // Setup the data we wish to return for the .then function in the controller
         deferred.resolve({
-          "complete": true,
           "data": [{
             "id": 1,
             "name": "Gregor van Vloten",
@@ -70,7 +69,6 @@ describe("Controller Test", function () {
       it('should resolve promise, patients  length should == 1', function () {
         // Setup the data we wish to return for the .then function in the controller
         deferred.resolve({
-          "complete": true,
           "data": [{
             "id": 1,
             "name": "Gregor van Vloten",
