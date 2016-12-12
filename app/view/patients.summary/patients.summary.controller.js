@@ -11,6 +11,7 @@ function PatientsSummaryController(routeParams, service) {
   vm.getPatientImage = getPatientImage;
   vm.showActivityDefintion = false;
   vm.actionOnActivityDefinition = actionOnActivityDefinition;
+  vm.convertActivity = convertActivity;
 
   service.getDataPatient(vm.patient.id).then(function (response) {
     vm.patientActivity = response.data;
@@ -52,5 +53,9 @@ function PatientsSummaryController(routeParams, service) {
   function actionOnActivityDefinition() {
     vm.showActivityDefintion = !vm.showActivityDefintion;
   }; //actionOnActivityDefinition
+
+  function convertActivity(minutes) {
+    return minutes < 60 ? minutes + " min" : (minutes / 60) + " h";
+  };//convertActivity
 
 }; // PatientsSummaryController
