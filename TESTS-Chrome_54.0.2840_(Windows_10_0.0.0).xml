@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 54.0.2840 (Windows 10 0.0.0)" package="" timestamp="2016-12-12T13:41:33" id="0" hostname="DNB519" tests="13" errors="0" failures="0" time="0.059">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"/>
+  </properties>
+  <testcase name="Unit: PatientsSummaryService Service: getActivities should invoke GET service" time="0.023" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Unit: PatientsSummaryService"/>
+  <testcase name="Unit: PatientsSummaryService Service: getDataPatient should invoke GET service" time="0.005" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Unit: PatientsSummaryService"/>
+  <testcase name="Controller Test Controller: PatientsController PatientsController should not be null" time="0.004" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController patientsFilters should be null" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController showFilters should be false" time="0.004" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController should resolve promise, patients should not be null" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController should resolve promise, patients  length should == 1" time="0.003" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController image path should be male_1.png" time="0.005" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController showFilters should be true" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController reverse.order should be true" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController patientsFilters size should be 1" time="0.003" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Controller Test Controller: PatientsController patientsFilters size should not be 1" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Controller Test"/>
+  <testcase name="Unit: PatientsService Service: getData should invoke GET service" time="0.002" classname="Chrome_54_0_2840_(Windows_10_0_0_0).Unit: PatientsService"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
