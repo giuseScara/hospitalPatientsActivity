@@ -33,7 +33,6 @@ Open terminal:
  npm install <br>
  gulp <br>
  gulp browser-sync
- Open Url http://localhost:3000/index.html
 </pre>
 
 Test:
