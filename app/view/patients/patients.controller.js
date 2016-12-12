@@ -37,7 +37,6 @@ function PatientsController(service) {
   function applyFilters() {
     vm.order.predicate = vm.filters.order;
     vm.patientsFilters = [];
-    console.log(vm.filters);
 
     patients.forEach(function (item) {
       var insertElement = {

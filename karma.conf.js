@@ -5,7 +5,7 @@ module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
 
     // frameworks to use
@@ -15,12 +15,18 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'app/tests/**/*.js',
-      'app/scripts/*.js',
-      'app/view/**/*.js'
+      './bower_components/jquery/dist/jquery.min.js',
+      './bower_components/bootstrap/dist/js/bootstrap.min.js',
+      './bower_components/d3/d3.min.js',
+      './bower_components/c3/c3.min.js',
+      './bower_components/angular/angular.min.js',
+      './bower_components/angular-route/angular-route.min.js',
+      './bower_components/angular-mocks/angular-mocks.js',
+      './app/scripts/app.js',
+      './app/scripts/app.config.js',
+      './app/scripts/app.route.js',
+      './app/view/**/*.js',
+      './app/tests/**/*.js'
     ],
 
 
@@ -28,6 +34,15 @@ module.exports = function (config) {
     exclude: [
       'yes'
     ],
+
+    ngHtml2JsPreprocessor: {
+        stripPrefix: 'app/',
+        //stripSufix: '.ext',
+
+        // setting this option will create only a single module that contains templates
+        // from all the files, so you can load them all with module('foo')
+        moduleName: 'myAppTemplates'
+    },
 
 
     // preprocess matching files before serving them to the browser
@@ -51,11 +66,11 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
