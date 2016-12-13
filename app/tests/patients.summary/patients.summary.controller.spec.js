@@ -17,7 +17,7 @@ describe("Unit: Controller Test", function () {
   }));
 
   var PatientsSummaryController,
-    scope, $q, deferred;
+    scope, $q, deferred_1, deferred_2;
   // Initialize the controller and a mock scope
   // spy the service to simulate the promise
   beforeEach(inject(function ($controller, $rootScope, _$q_, $routeParams, PatientsSummaryService) {
@@ -25,11 +25,13 @@ describe("Unit: Controller Test", function () {
     service = PatientsSummaryService;
     $q = _$q_;
     // We use the $q service to create a mock instance of defer
-    deferred = _$q_.defer();
+    deferred_1 = _$q_.defer();
+    deferred_2 = _$q_.defer();
+
     $routeParams.patient = '{"id ":1,"name ":"Gregor van Vloten ","gender ":"male ","birthDate ":"1986 - 05 - 09 ","heightCm ":193,"weightKg ":69.6,"bmi ":18.6}';
     // Use a Jasmine Spy to return the deferred promise
-    spyOn(service, 'getActivities').and.returnValue(deferred.promise);
-    spyOn(service, 'getDataPatient').and.returnValue(deferred.promise);
+    spyOn(service, 'getActivities').and.returnValue(deferred_1.promise);
+    spyOn(service, 'getDataPatient').and.returnValue(deferred_2.promise);
 
 
     PatientsSummaryController = $controller('PatientsSummaryController', {});
@@ -75,7 +77,7 @@ describe("Unit: Controller Test", function () {
 
     it('should resolve promise, definitionActivity should not be null', function () {
       // Setup the data we wish to return for the .then function in the controller
-      deferred.resolve({
+      deferred_1.resolve({
         "data": [
           {
             "activity": "sleeping",
@@ -103,12 +105,16 @@ describe("Unit: Controller Test", function () {
             }
           ]
       });
-      expect(service.getActivities).toHaveBeenCalled();
+              // We have to call apply for this to work
+       scope.$apply();
+        // Since we called apply, not we can perform our assertions
+      expect(PatientsSummaryController.definitionActivity).not.toBeNull();
+      //expect(service.getActivities).toHaveBeenCalled();
     });
 
     it('should resolve promise, patientActivity should not be null', function () {
       // Setup the data we wish to return for the .then function in the controller
-      deferred.resolve({
+      deferred_2.resolve({
         "data": [
           {
             "activity": "sleeping",
@@ -129,7 +135,9 @@ describe("Unit: Controller Test", function () {
           ]
 
       });
-      expect(service.getDataPatient).toHaveBeenCalled();
+      scope.$apply();
+      // Since we called apply, not we can perform our assertions
+      expect(PatientsSummaryController.patientActivity).not.toBeNull();
     });
 
   });
