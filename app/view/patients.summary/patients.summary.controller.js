@@ -1,29 +1,32 @@
 "use strict";
 angular.module("AppModule").controller("PatientsSummaryController", PatientsSummaryController);
 
-PatientsSummaryController.$inject = ["$routeParams", "PatientsSummaryService"];
+PatientsSummaryController.$inject = ["$routeParams", "$filter", "PatientsSummaryService"];
 
-function PatientsSummaryController(routeParams, service) {
+function PatientsSummaryController(routeParams, filter, service) {
   var vm = this;
   var chart = null;
   vm.definitionActivity = null;
   vm.patientActivity = null;
-  console.log(routeParams);
-  vm.patient = JSON.parse(routeParams.patient);
+  vm.patient = null;
   vm.getPatientImage = getPatientImage;
   vm.showActivityDefintion = false;
   vm.actionOnActivityDefinition = actionOnActivityDefinition;
   vm.convertActivity = convertActivity;
 
-  service.getDataPatient(vm.patient.id).then(function (response) {
-    vm.patientActivity = response.data;
-    createChartActivity(response.data, 'donut', "#chartDonut", 'right');
-  });
+  if (routeParams.patient != null ) {
+    vm.patient = JSON.parse(routeParams.patient);
+        
+    service.getDataPatient(vm.patient.id).then(function (response) {
+      vm.patientActivity = response.data;
+      createChartActivity(response.data, 'donut', "#chartDonut", 'right');
+    });
 
-  service.getActivities().then(function (response) {
-    vm.definitionActivity = response.data;
-  });
-
+    service.getActivities().then(function (response) {
+      vm.definitionActivity = response.data;
+    });
+  }
+  
   function getPatientImage(patient, index) {
     var image = "images/";
     if (patient.gender === "male") {
@@ -57,7 +60,7 @@ function PatientsSummaryController(routeParams, service) {
   }; //actionOnActivityDefinition
 
   function convertActivity(minutes) {
-    return minutes < 60 ? minutes + " min" : (minutes / 60) + " h";
+    return minutes < 60 ? minutes + " min" : filter('number')(minutes/60, 2) + " h";
   }; //convertActivity
 
 }; // PatientsSummaryController
