@@ -7,7 +7,7 @@
     <h3 class="page-header"><i class="fa fa-heartbeat" aria-hidden="true"></i> Patients summary</h3>
   </div>
 </div>
-<div class="row" ng-if="patCtrl.patientActivity && patCtrl.patientActivity.length > 0">
+<div class="row" ng-if="patSumCtrl.patientActivity">
   <div class="col-xs-12 space-col">
     <a ng-click="patSumCtrl.actionOnActivityDefinition()">
       {{ patSumCtrl.showActivityDefintion ? 'Close Activity Defiinition':'Open Activity Defiinition'}}
@@ -40,12 +40,12 @@
     </div>
   </div>
 </div>
-<div class="row" ng-show="patCtrl.patientActivity && patCtrl.patientActivity.length > 0">
+<div class="row">
   <div class="col-xs-12">
     <div class="panel panel-default text-left">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-sm-6 text-center box-patient" style="margin-top:20px;">
+          <div class="col-sm-6 text-center box-patient" style="margin-top:20px;" ng-show="patSumCtrl.patientActivity">
             <img class="img-circle img-responsive img-center img-patients " ng-src=" {{::patSumCtrl.getPatientImage(patSumCtrl.patient)}}" alt="patient image">
             <h3>{{ patSumCtrl.patient.name }}
               <small>{{ patSumCtrl.patient.birthDate | date }} </small>
@@ -61,7 +61,7 @@
         </div>
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body"  ng-show="patSumCtrl.patientActivity">
         <table class="table">
           <thead>
             <tr>
@@ -82,7 +82,7 @@
     </div>
   </div>
 </div>
-<blockquote ng-if="!patCtrl.patientActivity || patCtrl.patientActivity.length == 0">
+<blockquote ng-if="!patSumCtrl.patientActivity">
   <p>No activity found.</p>
   <footer><a href="#/patients"> Select patient </a></footer>
 </blockquote>

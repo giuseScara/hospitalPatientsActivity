@@ -1,9 +1,9 @@
 "use strict";
 angular.module("AppModule").controller("PatientsSummaryController", PatientsSummaryController);
 
-PatientsSummaryController.$inject = ["$routeParams", "PatientsSummaryService"];
+PatientsSummaryController.$inject = ["$routeParams", "$filter", "PatientsSummaryService"];
 
-function PatientsSummaryController(routeParams, service) {
+function PatientsSummaryController(routeParams, filter, service) {
   var vm = this;
   var chart = null;
   vm.definitionActivity = null;
@@ -14,9 +14,9 @@ function PatientsSummaryController(routeParams, service) {
   vm.actionOnActivityDefinition = actionOnActivityDefinition;
   vm.convertActivity = convertActivity;
 
-  if (routeParams.patient) {
+  if (routeParams.patient != null ) {
     vm.patient = JSON.parse(routeParams.patient);
-
+        
     service.getDataPatient(vm.patient.id).then(function (response) {
       vm.patientActivity = response.data;
       createChartActivity(response.data, 'donut', "#chartDonut", 'right');
@@ -60,7 +60,7 @@ function PatientsSummaryController(routeParams, service) {
   }; //actionOnActivityDefinition
 
   function convertActivity(minutes) {
-    return minutes < 60 ? minutes + " min" : (minutes / 60) + " h";
+    return minutes < 60 ? minutes + " min" : filter('number')(minutes/60, 2) + " h";
   }; //convertActivity
 
 }; // PatientsSummaryController
