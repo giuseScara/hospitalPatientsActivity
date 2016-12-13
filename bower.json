@@ -26,6 +26,6 @@
     "angular-route": "1.5.8",
     "firebase": "3.6.2",
     "angular-mocks": "1.5.8",
-    "c3": "^0.4.11"
+    "c3": "0.4.11"
   }
 }
