@@ -14,9 +14,9 @@ function PatientsSummaryController(routeParams, filter, service) {
   vm.actionOnActivityDefinition = actionOnActivityDefinition;
   vm.convertActivity = convertActivity;
 
-  if (routeParams.patient != null ) {
+  if (routeParams.patient != null) {
     vm.patient = JSON.parse(routeParams.patient);
-        
+
     service.getDataPatient(vm.patient.id).then(function (response) {
       vm.patientActivity = response.data;
       createChartActivity(response.data, 'donut', "#chartDonut", 'right');
@@ -26,7 +26,7 @@ function PatientsSummaryController(routeParams, filter, service) {
       vm.definitionActivity = response.data;
     });
   }
-  
+
   function getPatientImage(patient, index) {
     var image = "images/";
     if (patient.gender === "male") {
@@ -37,8 +37,10 @@ function PatientsSummaryController(routeParams, filter, service) {
     return image + ".png";
   }; //getPatientImage
 
+  //create activity chart usign c3 libs
   function createChartActivity(jsonData, type, id, position) {
     var json = {};
+    //parse data to c3 libs
     jsonData.forEach(function (item) {
       json[item.activity] = [item.minutes];
     });
@@ -60,7 +62,7 @@ function PatientsSummaryController(routeParams, filter, service) {
   }; //actionOnActivityDefinition
 
   function convertActivity(minutes) {
-    return minutes < 60 ? minutes + " min" : filter('number')(minutes/60, 2) + " h";
+    return minutes < 60 ? minutes + " min" : filter('number')(minutes / 60, 2) + " h";
   }; //convertActivity
 
 }; // PatientsSummaryController

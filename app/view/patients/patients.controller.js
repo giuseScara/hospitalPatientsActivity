@@ -38,6 +38,7 @@ function PatientsController(service) {
     vm.order.predicate = vm.filters.order;
     vm.patientsFilters = [];
 
+    //filter list of patients
     patients.forEach(function (item) {
       var insertElement = {
         gender: true,
@@ -81,6 +82,7 @@ function PatientsController(service) {
 
   }; //applyFilters
 
+  //get image based of gender
   function getPatientImage(patient, index) {
     var image = "images/";
     if (patient.gender === "male") {

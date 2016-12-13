@@ -20,6 +20,10 @@ function PatientsService(http) {
       return response;
     });
 
+    promise.error(function (response) {
+      return response;
+    });
+
     return promise;
 
   } //getData

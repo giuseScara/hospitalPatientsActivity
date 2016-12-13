@@ -23,10 +23,15 @@ function PatientsSummaryService(http) {
     return actionCall(urlActivities);
   }; //getActivities
 
+  //generic ajax call
   function actionCall(url) {
     var promise = http.get(url);
 
     promise.success(function (response) {
+      return response;
+    });
+
+    promise.error(function (response) {
       return response;
     });
 
