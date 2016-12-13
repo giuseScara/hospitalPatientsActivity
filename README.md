@@ -43,5 +43,5 @@ Open terminal:
  cd hospitalPatientsActivity <br>
  npm install <br>
  gulp <br>
- karma start
+ npm test
 </pre>
