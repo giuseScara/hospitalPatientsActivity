@@ -58,7 +58,7 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('dist/images'))
     .pipe(notify({
       message: 'Images task complete'
-    }));
+    })), gulp.src('app/images/favicon.ico').pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('copyview', function () {
