@@ -8,22 +8,25 @@ function PatientsSummaryController(routeParams, service) {
   var chart = null;
   vm.definitionActivity = null;
   vm.patientActivity = null;
-  console.log(routeParams);
-  vm.patient = JSON.parse(routeParams.patient);
+  vm.patient = null;
   vm.getPatientImage = getPatientImage;
   vm.showActivityDefintion = false;
   vm.actionOnActivityDefinition = actionOnActivityDefinition;
   vm.convertActivity = convertActivity;
 
-  service.getDataPatient(vm.patient.id).then(function (response) {
-    vm.patientActivity = response.data;
-    createChartActivity(response.data, 'donut', "#chartDonut", 'right');
-  });
+  if (routeParams.patient) {
+    vm.patient = JSON.parse(routeParams.patient);
 
-  service.getActivities().then(function (response) {
-    vm.definitionActivity = response.data;
-  });
+    service.getDataPatient(vm.patient.id).then(function (response) {
+      vm.patientActivity = response.data;
+      createChartActivity(response.data, 'donut', "#chartDonut", 'right');
+    });
 
+    service.getActivities().then(function (response) {
+      vm.definitionActivity = response.data;
+    });
+  }
+  
   function getPatientImage(patient, index) {
     var image = "images/";
     if (patient.gender === "male") {
